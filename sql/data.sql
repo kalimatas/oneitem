@@ -65,3 +65,12 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+truncate table one_user;
+truncate table one_shop;
+truncate table one_user_shop;
+insert into one_user values(1,'client@gmail.com',md5('111111'),'client',now());
+insert into one_user values(2,'publisher@gmail.com',md5('111111'),'publisher',now());
+insert into one_shop values (1,'Турбо Товары','/img/turbo.png','/shop','one','/shop/newOrder','/shop/json');
+insert into one_user_shop values (1,1);

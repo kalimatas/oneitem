@@ -24,7 +24,7 @@ class SiteController extends ControllerBase
     /**
      * Получение листинга для сайта по категории
      */
-    public function listingAction()
+    public function shopAction()
     {
         $categoryId = 1;
 

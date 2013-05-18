@@ -6,5 +6,14 @@ class SiteController extends ControllerBase
     {
 
     }
-}
 
+    public function aboutAction()
+    {
+
+    }
+
+    public function listingAction()
+    {
+
+    }
+}

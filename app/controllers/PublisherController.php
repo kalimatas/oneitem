@@ -1,5 +1,8 @@
 <?php
 
+use \Phalcon\Mvc\View;
+use \Publisher\Listing;
+
 class PublisherController extends ControllerBase
 {
     public function initialize()
@@ -22,6 +25,13 @@ class PublisherController extends ControllerBase
      */
     public function listingAction()
     {
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+        $this->response->resetHeaders();
+        $this->response->setHeader('Content-type', 'application/json');
 
+        $categoryId = $this->request->get('category_id');
+
+        $listing = new Listing();
+        echo json_encode($listing->getJson($categoryId), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }

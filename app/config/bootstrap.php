@@ -1,6 +1,7 @@
 <?php
 
 umask(002);
+error_reporting(E_ALL ^ E_WARNING);
 
 $di = new \Phalcon\DI\FactoryDefault();
 

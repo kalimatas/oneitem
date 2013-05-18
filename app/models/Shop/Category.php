@@ -13,11 +13,16 @@ class Category extends \Phalcon\Mvc\Model
     }
 
     /**
+     * @param int $categoryId
      * @return \Phalcon\Mvc\Model\Resultset\Simple
      */
-    public function getList()
+    public function getList($categoryId = null)
     {
-        return $this->find();
+        if ($categoryId) {
+            return $this->find('id = ' . $categoryId);
+        } else {
+            return $this->find();
+        }
     }
 
     /**

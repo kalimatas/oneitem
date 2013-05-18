@@ -31,7 +31,11 @@ class Listing
         return $result;
     }
 
-    public function getJson()
+    /**
+     * @param int $categoryId
+     * @return array
+     */
+    public function getJson($categoryId = null)
     {
         $result = array(
             'category_list' => array(),
@@ -39,7 +43,7 @@ class Listing
         );
 
         $categoryModel = new Category();
-        $categoryList = $categoryModel->getList();
+        $categoryList = $categoryModel->getList($categoryId);
         foreach ($categoryList as $category) {
             /** @var \Shop\Category $category */
             $result['category_list'][] = array(

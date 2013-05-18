@@ -12,12 +12,19 @@ class Listing
      */
     public function get($categoryId)
     {
+        $result = array();
+
         $jsonString = file_get_contents($this->url . '?category_id=' . $categoryId);
         if (!$jsonString) {
-            return array();
+            return $result;
         }
 
         $json = json_decode($jsonString, true);
-        return $json;
+        $result[] = array(
+            'category' => $json['category_list'][0],
+            'product_list' => $json['product_list'],
+        );
+
+        return $result;
     }
 }

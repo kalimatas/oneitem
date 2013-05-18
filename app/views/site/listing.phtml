@@ -1,0 +1,24 @@
+<table>
+    <thead>
+    <tr></tr>
+    <th>Название</th>
+    <th>Описание</th>
+    <th>Цена</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <?php foreach ($listing as $category) { ?>
+        <?php foreach ($category['product_list'] as $product) { ?>
+            <tr>
+                <td><strong><?php echo $product['name'] ?></strong></td>
+                <td><?php echo $product['description'] ?></td>
+                <td><?php echo $product['price'] ?> руб</td>
+                <td>
+                    <a href="/shop/newOrder/?product_list[]=<?php echo $product['id'] ?>"
+                       class="button small">Купить</a></td>
+            </tr>
+        <?php
+        }
+    } ?>
+    </tbody>
+</table>

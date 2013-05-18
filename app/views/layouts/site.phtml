@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title><?php echo Phalcon\Tag::getTitle(false) ?></title>
+
+    <link rel="stylesheet" href="/css/normalize.css"/>
+
+    <link rel="stylesheet" href="/css/foundation.css"/>
+
+
+    <script src="/js/vendor/custom.modernizr.js"></script>
+    <script src="/js/vendor/jquery.js"></script>
+
+    <style>
+        footer {
+            padding-top: 10px;
+        }
+
+        .top-bar, .top-bar-section li a:not(.button) {
+            background-color: #970b0e;
+        }
+
+        .top-bar-section li a:hover:not(.button) {
+            background-color: #8c5a34;
+        }
+
+        .product-block-desc {
+            font-size: 0.8em;
+        }
+
+        .product-block-price {
+            font-size: 1em;
+            color: #970b0e;
+            font-weight: bold;
+        }
+
+        [class*="block-grid-"] > li {
+            border: solid 1px #1e728c;
+            border-collapse: collapse;
+            height: 200px;
+        }
+
+        .product-block {
+            height: 100px;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav class="top-bar">
+    <ul class="title-area">
+        <li class="name"><h1><a href="/shop"><?php echo Phalcon\Tag::getTitle(false) ?></a></h1></li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+    </ul>
+</nav>
+
+<div class="row">
+    <div class="large-10 columns">
+        <?php
+        $flashMessages = $this->flashSession->getMessages();
+        //var_dump($flashMessages);die();
+        foreach ($flashMessages as $key => $messages) {
+            switch ($key) {
+                case 'error':
+                    $class = 'alert';
+                    break;
+                case 'success':
+                    $class = 'success';
+                    break;
+                case 'notice':
+                    $class = 'secondary';
+                    break;
+                case 'warning':
+                    $class = 'alert';
+                    break;
+                default:
+                    $class = '';
+            }
+            foreach ($messages as $message) {
+                ?>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div data-alert class="alert-box <?php echo $class ?>">
+                            <?php echo $message ?>
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+        }
+        ?>
+
+        <?php echo $this->getContent(); ?>
+    </div>
+</div>
+
+<footer>
+    <div class="row">
+        <div class="large-12">Магазин</div>
+    </div>
+</footer>
+
+
+<script>
+    document.write('<script src=' +
+        ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
+    '.js><\/script>')
+</script>
+
+<script src="/js/foundation.min.js"></script>
+<!--
+
+<script src="/js/foundation/foundation.js"></script>
+
+<script src="/js/foundation/foundation.alerts.js"></script>
+
+<script src="/js/foundation/foundation.clearing.js"></script>
+
+<script src="/js/foundation/foundation.cookie.js"></script>
+
+<script src="/js/foundation/foundation.dropdown.js"></script>
+
+<script src="/js/foundation/foundation.forms.js"></script>
+
+<script src="/js/foundation/foundation.joyride.js"></script>
+
+<script src="/js/foundation/foundation.magellan.js"></script>
+
+<script src="/js/foundation/foundation.orbit.js"></script>
+
+<script src="/js/foundation/foundation.placeholder.js"></script>
+
+<script src="/js/foundation/foundation.reveal.js"></script>
+
+<script src="/js/foundation/foundation.section.js"></script>
+
+<script src="/js/foundation/foundation.tooltips.js"></script>
+
+<script src="/js/foundation/foundation.topbar.js"></script>
+
+-->
+
+<script>
+    $(document).foundation();
+</script>
+
+</body>
+</html>

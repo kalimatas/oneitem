@@ -10,6 +10,7 @@ namespace Shop;
 class Listing
 {
     /**
+     * @param int $category_id
      * @return array
      */
     public function get($category_id)

@@ -4,6 +4,13 @@ use \Site\Listing;
 
 class SiteController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_LAYOUT);
+        $this->view->setLayout('site');
+        Phalcon\Tag::prependTitle('Site');
+    }
+
     public function indexAction()
     {
 

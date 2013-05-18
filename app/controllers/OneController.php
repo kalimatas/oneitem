@@ -11,6 +11,14 @@ class OneController extends ControllerBase
     }
 
     /**
+     *
+     */
+    public function aboutAction()
+    {
+
+    }
+
+    /**
      * Регистрация
      */
     public function registerAction()
@@ -23,7 +31,42 @@ class OneController extends ControllerBase
      */
     public function authAction()
     {
+        if ($this->request->isPost()) {
+            $email = $this->request->getPost('email');
+            $password = $this->request->getPost('password');
 
+            $userModel = new \One\User();
+            $user = $userModel->login($email, $password);
+
+            if ($user !== false) {
+                $this->session->set('auth', array(
+                                                 'id' => $user->id,
+                                            )
+                );
+                echo json_encode(array(
+                                      'status' => 'success',
+                                      'redirect' => '',
+                                 )
+                );
+            } else {
+                echo json_encode(array(
+                                      'status' => 'fail',
+                                      'msg' => 'Некорректно указаны email или пароль',
+                                 )
+                );
+            }
+        }
+        die();
+    }
+
+    /**
+     * Выход
+     */
+    public function logoutAction()
+    {
+        $this->session->destroy();
+
+        $this->response->redirect();
     }
 
     /**

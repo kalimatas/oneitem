@@ -17,13 +17,67 @@
     <script src="/js/vendor/custom.modernizr.js"></script>
     <script src="/js/vendor/jquery.js"></script>
 
+    <style>
+        footer  {
+            background-color: #fff;
+            padding-top: 10px;
+        }
+    </style>
+
 </head>
 <body>
 
-<?php echo $this->elements->getLogin() ?>
+<nav class="top-bar">
+<ul class="title-area">
+    <li class="name"><h1><a href="#">One</a></h1></li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
+</ul>
+
+<section class="top-bar-section">
+    <ul class="left">
+        <li class="divider"></li>
+        <li><a href="/one/about">О нас</a></li>
+        <li><a href="/one/about">Контакты</a></li>
+    </ul>
+
+    <?php echo $this->elements->getLogin() ?>
+</section>
+</nav>
 
 <?php echo $this->getContent(); ?>
 
+<footer>
+    <div class="row">
+        <div class="large-12">Новая платформа продаж для магазинов</div>
+    </div>
+</footer>
+
+<div id="loginModal" class="reveal-modal small">
+    <h1>Авторизация</h1>
+
+    <div class="block-login-fail hide">
+        <div data-alert class="alert-box alert hide">
+            Ошибка авторизации
+            <a href="#" class="close">&times;</a>
+        </div>
+    </div>
+
+    <form action="/" method="get" id="loginFrm">
+        <div class="row">
+            <div class="small-12">
+                <input type="text" name="email" placeholder="Email">
+            </div>
+            <div class="small-12">
+                <input type="password" name="password" placeholder="Пароль">
+            </div>
+            <div class="small-12">
+                <a href="#" id="loginBtn" class="small button">Отправить</a>
+            </div>
+            <div><a href="/one/register">Регистрация</a></div>
+        </div>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
 
 <script>
     document.write('<script src=' +
@@ -71,7 +125,7 @@
 <script>
     $(function () {
         $("#loginBtn").click(function (event) {
-            $.post("/user/loginAjax", $("#loginFrm").serialize(), function (data) {
+            $.post("/one/auth", $("#loginFrm").serialize(), function (data) {
                 if (data.status == 'success') {
                     $('#loginFrm').submit();
                 } else {

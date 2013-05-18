@@ -18,7 +18,7 @@ class Security extends Phalcon\Mvc\User\Plugin
                                          )
                                     ));
             if ($user) {
-                \Logger::get()->info('user logged : ' . $user->login);
+                \Logger::get()->info('user logged : ' . $user->email);
                 $di = $this->getDI();
                 $di->set('user', $user);
 
@@ -30,7 +30,7 @@ class Security extends Phalcon\Mvc\User\Plugin
                     $role = \One\User::GROUP_GUEST;
                 }
             } else {
-                \Logger::get()->info('not found logged : ' . $user->login);
+                \Logger::get()->info('not found logged : ' . $user->email);
 
                 $this->session->destroy();
                 $this->session->remove('auth');

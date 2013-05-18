@@ -1,0 +1,11 @@
+CREATE SCHEMA IF NOT EXISTS `one` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `one` ;
+
+CREATE  TABLE IF NOT EXISTS `one`.`user` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `login` VARCHAR(45) NULL ,
+  `password` VARCHAR(255) NULL ,
+  `group` VARCHAR(255) NULL ,
+  `added` TIMESTAMP NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB ;

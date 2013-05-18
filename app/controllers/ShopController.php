@@ -98,6 +98,9 @@ class ShopController extends ControllerBase
 
     public function statAction()
     {
+        $order = new \Shop\Order();
+        $orderList = $order->find(array('order' => 'added desc'));
 
+        $this->view->setVar('orderList', $orderList);
     }
 }

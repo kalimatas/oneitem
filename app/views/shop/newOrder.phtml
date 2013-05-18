@@ -1,1 +1,33 @@
-<p><?php $this->flashSession->output() ?></p>
+<h1>Оформление заказа</h1>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table>
+            <tr>
+                <td><strong><?php echo $product->name ?></strong></td>
+                <td><?php echo $product->description ?></td>
+                <td><?php echo $product->price ?> руб</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<form method="post" id="order">
+    <div class="row">
+        <div class="large-12 columns">
+            <input name="name" type="text" placeholder="Как вас зовут?" value="<?php echo $name ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <input name="mobile" type="text" placeholder="Поделитесь телефончиком" value="<?php echo $mobile ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <input name="address" type="text" placeholder="А где вы живете?" value="<?php echo $address ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <a href="javascript:$('#order').submit()" class="button">Отправить</a>
+        </div>
+    </div>
+</form>

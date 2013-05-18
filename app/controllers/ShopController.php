@@ -6,13 +6,22 @@ use \Shop\Order;
 
 class ShopController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_LAYOUT);
+        $this->view->setLayout('shop');
+        Phalcon\Tag::prependTitle('Shop');
+    }
+
     /**
      * Листинг
      */
     public function indexAction()
     {
+        $category_id = $this->request->getQuery('category');
+
         $listing = new Listing();
-        $this->view->setVar('listing', $listing->get());
+        $this->view->setVar('listing', $listing->get($category_id));
     }
 
     /**
@@ -21,29 +30,60 @@ class ShopController extends ControllerBase
     public function newOrderAction()
     {
         $productList = $this->request->get('product_list');
-        $name = $this->request->get('name');
-        $mobile = $this->request->get('mobile');
-        $address = $this->request->get('address');
+        $name = '';
+        $mobile = '';
+        $address = '';
 
-        if (!$productList || !$name || !$mobile || !$address) {
+        if (!$productList) {
             $this->response->redirect('/shop', true);
             return;
         }
 
-        $orderData = array(
-            'product_list' => $productList,
-            'name' => $name,
-            'mobile' => $mobile,
-            'address' => $address,
-        );
+        $productModel = new \Shop\Product();
+        $product = $productModel->findFirst('id = ' . (int)$productList[0]);
+        //var_dump($product);die();
 
-        $order = new Order();
-        try {
-            $order->createOrder($orderData);
-            $this->flashSession->success('Заказ успешно создан! <br /><a href="/shop">Перейти на главную</a>');
-        } catch (Exception $e) {
-            $this->flashSession->error('Ошибка создания заказа!');
+        if ($product == false) {
+            $this->response->redirect('/shop', true);
+            return;
         }
+
+        if ($this->request->isPost()) {
+            $name = $this->request->getPost('name');
+            $mobile = $this->request->getPost('mobile');
+            $address = $this->request->getPost('address');
+            if (empty($name)) {
+                $this->flashSession->error('Не указано имя');
+            } elseif (empty($mobile)) {
+                $this->flashSession->error('Не указан телефон');
+            } elseif (empty($address)) {
+                $this->flashSession->error('Не указан адрес');
+            } else {
+                $order = new \Shop\Order();
+                try {
+                    $data = array(
+                        'product_id' => $product->id,
+                        'name' => $name,
+                        'mobile' => $mobile,
+                        'address' => $address,
+                        'price' => $product->price,
+                        'added' => date('Y-m-d H:i:s'),
+                    );
+                    $order->save($data);
+
+                    $this->flashSession->success('Заказ успешно создан');
+                    $this->response->redirect('shop');
+                    return;
+                } catch (Exception $e) {
+                    $this->flashSession->error('Ошибка создания заказа!');
+                }
+            }
+        }
+
+        $this->view->setVar('product', $product);
+        $this->view->setVar('name', $name);
+        $this->view->setVar('mobile', $mobile);
+        $this->view->setVar('address', $address);
     }
 
     public function jsonAction()
@@ -54,5 +94,10 @@ class ShopController extends ControllerBase
 
         $listing = new Listing();
         echo json_encode($listing->getJson(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    public function statAction()
+    {
+
     }
 }

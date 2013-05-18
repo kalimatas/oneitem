@@ -25,4 +25,20 @@ class Elements extends Phalcon\Mvc\User\Component
         <?php
         }
     }
+
+    public function getShopMenu()
+    {
+        $categoryModel = new \Shop\Category();
+        $categoryList = $categoryModel->find();
+        foreach ($categoryList as $category) {
+            ?>
+            <li><a href="/shop/index/?category=<?php echo $category->id ?>"><?php echo $category->name ?></a></li>
+            <li class="divider"></li>
+        <?php
+        }
+        ?>
+        <li><a href="/shop/index">Все</a></li>
+        <li class="divider"></li>
+    <?php
+    }
 }

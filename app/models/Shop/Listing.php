@@ -12,12 +12,12 @@ class Listing
     /**
      * @return array
      */
-    public function get()
+    public function get($category_id)
     {
         $result = array();
 
         $categoryModel = new Category();
-        $categoryList = $categoryModel->getList();
+        $categoryList = $categoryModel->getList($category_id);
         foreach ($categoryList as $category) {
             /** @var \Shop\Category $category */
             $productList = $category->getProductList();

@@ -7,9 +7,10 @@ class User extends \Phalcon\Mvc\Model
     const GROUP_CLIENT = 'client';
 
     public $id;
-    public $login;
+    public $email;
     public $password;
     public $group;
+    public $api_token;
     public $added;
 
     public function generatePassword($password = false)

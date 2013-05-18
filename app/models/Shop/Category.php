@@ -11,4 +11,20 @@ class Category extends \Phalcon\Mvc\Model
     {
         $this->setSource('shop_category');
     }
+
+    /**
+     * @return \Phalcon\Mvc\Model\Resultset\Simple
+     */
+    public function getList()
+    {
+        return $this->find();
+    }
+
+    /**
+     * @return \Phalcon\Mvc\Model\Resultset\Simple
+     */
+    public function getProductList()
+    {
+        return \Shop\Product::find("category_id = " . $this->id);
+    }
 }

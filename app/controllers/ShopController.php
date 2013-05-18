@@ -1,5 +1,7 @@
 <?php
 
+use \Shop\Listing;
+
 class ShopController extends ControllerBase
 {
     /**
@@ -7,7 +9,8 @@ class ShopController extends ControllerBase
      */
     public function indexAction()
     {
-
+        $listing = new Listing();
+        $this->view->setVar('listing', $listing->get());
     }
 
     /**

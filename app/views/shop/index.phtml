@@ -1,1 +1,9 @@
-shop index
+<?php foreach ($listing as $category) : ?>
+    <h4><?= $category['category']['name'] ?></h4>
+    <?php foreach ($category['product_list'] as $product) : ?>
+        <div><?= $product['name'] ?></div>
+        <div><?= $product['description'] ?></div>
+        <div><?= $product['price'] ?></div>
+        <br />
+    <?php endforeach; ?>
+<?php endforeach; ?>

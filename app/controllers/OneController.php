@@ -2,6 +2,13 @@
 
 class OneController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_LAYOUT);
+        $this->view->setLayout('one');
+        Phalcon\Tag::prependTitle('One');
+    }
+
     /**
      * Про about
      */
@@ -43,9 +50,17 @@ class OneController extends ControllerBase
                                                  'id' => $user->id,
                                             )
                 );
+                switch ($user->group) {
+                    case \One\User::GROUP_CLIENT:
+                        $redirect = '/client';
+                        break;
+                    case \One\User::GROUP_PUBLISHER:
+                        $redirect = '/publisher';
+                        break;
+                }
                 echo json_encode(array(
                                       'status' => 'success',
-                                      'redirect' => '',
+                                      'redirect' => $redirect,
                                  )
                 );
             } else {
@@ -66,7 +81,7 @@ class OneController extends ControllerBase
     {
         $this->session->destroy();
 
-        $this->response->redirect();
+        $this->response->redirect('one');
     }
 
     /**

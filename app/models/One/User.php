@@ -1,5 +1,7 @@
 <?php
 
+namespace One;
+
 class User extends \Phalcon\Mvc\Model
 {
     const GROUP_GUEST = 'guest';

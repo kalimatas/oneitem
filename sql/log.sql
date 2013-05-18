@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `one`.`shop_category` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`shop_category` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(255) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -42,8 +42,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `one`.`shop_order` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`shop_order` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `product_id` BIGINT(20) UNSIGNED NULL ,
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `product_id` BIGINT(20) UNSIGNED NOT NULL ,
   `price` DECIMAL(10,2) NULL ,
   `name` VARCHAR(255) NULL ,
   `mobile` VARCHAR(255) NULL ,
@@ -76,7 +76,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `one`.`one_site` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`one_site` (
-  `id` INT NOT NULL ,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(255) NULL ,
   `url` VARCHAR(255) NULL ,
   PRIMARY KEY (`id`) )
@@ -116,7 +116,7 @@ CREATE  TABLE IF NOT EXISTS `one`.`one_cpo` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `site_id` BIGINT(20) UNSIGNED NOT NULL ,
   `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
-  `product_id` BIGINT(20) UNSIGNED NULL ,
+  `product_id` BIGINT(20) UNSIGNED NOT NULL ,
   `name` VARCHAR(255) NULL ,
   `mobile` VARCHAR(255) NULL ,
   `address` VARCHAR(255) NULL ,
@@ -145,7 +145,7 @@ DROP TABLE IF EXISTS `one`.`one_site_product` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`one_site_product` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `shop_id` BIGINT(20) UNSIGNED NULL ,
+  `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
   `status` VARCHAR(255) NULL ,
   `category_id` BIGINT(20) UNSIGNED NOT NULL ,
   `name` VARCHAR(255) NULL ,

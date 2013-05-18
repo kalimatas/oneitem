@@ -11,7 +11,7 @@ class Security extends Phalcon\Mvc\User\Plugin
         $role = 'guest';
         if ($auth) {
             /** @var $user \User */
-            $user = User::findFirst(array(
+            $user = \One\User::findFirst(array(
                                          'id = :id:',
                                          'bind' => array(
                                              'id' => $auth['id'],

@@ -139,31 +139,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `one`.`one_site_product`
+-- Table `one`.`one_shop_product`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_site_product` ;
+DROP TABLE IF EXISTS `one`.`one_shop_product` ;
 
-CREATE  TABLE IF NOT EXISTS `one`.`one_site_product` (
+CREATE  TABLE IF NOT EXISTS `one`.`one_shop_product` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
+  `shop_product_id` BIGINT(20) UNSIGNED NOT NULL ,
   `status` VARCHAR(255) NULL ,
   `category_id` BIGINT(20) UNSIGNED NOT NULL ,
   `name` VARCHAR(255) NULL ,
   `description` TEXT NULL ,
   `price` DECIMAL(10,2) NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `one`.`one_site_category`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_site_category` ;
-
-CREATE  TABLE IF NOT EXISTS `one`.`one_site_category` (
-  `site_id` BIGINT(20) UNSIGNED NOT NULL ,
-  `category_id` BIGINT(20) UNSIGNED NOT NULL ,
-  PRIMARY KEY (`site_id`, `category_id`) )
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `shop_ui` (`shop_id` ASC, `shop_product_id` ASC) )
 ENGINE = InnoDB;
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use \Shop\Listing;
+use \Phalcon\Mvc\View;
 
 class ShopController extends ControllerBase
 {
@@ -27,5 +28,15 @@ class ShopController extends ControllerBase
     public function newOrderApiAction()
     {
 
+    }
+
+    public function jsonAction()
+    {
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+        $this->response->resetHeaders();
+        $this->response->setHeader('Content-type', 'application/json');
+
+        $listing = new Listing();
+        echo json_encode($listing->getJson(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }

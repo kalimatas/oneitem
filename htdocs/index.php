@@ -55,6 +55,10 @@ try {
         return new \Elements();
     });
 
+    $di->set('flash', function() {
+        return new \Phalcon\Flash\Session();
+    });
+
     $di->set('view', function () use ($config) {
         $view = new \Phalcon\Mvc\View();
         $view->setViewsDir($config->application->viewsDir);

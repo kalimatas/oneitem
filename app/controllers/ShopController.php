@@ -2,6 +2,7 @@
 
 use \Shop\Listing;
 use \Phalcon\Mvc\View;
+use \Shop\Order;
 
 class ShopController extends ControllerBase
 {
@@ -15,19 +16,34 @@ class ShopController extends ControllerBase
     }
 
     /**
-     * Создание заказа "у себя"
+     * Создание заказа
      */
     public function newOrderAction()
     {
+        $productList = $this->request->get('product_list');
+        $name = $this->request->get('name');
+        $mobile = $this->request->get('mobile');
+        $address = $this->request->get('address');
 
-    }
+        if (!$productList || !$name || !$mobile || !$address) {
+            $this->response->redirect('/shop', true);
+            return;
+        }
 
-    /**
-     * API для создания заказа
-     */
-    public function newOrderApiAction()
-    {
+        $orderData = array(
+            'product_list' => $productList,
+            'name' => $name,
+            'mobile' => $mobile,
+            'address' => $address,
+        );
 
+        $order = new Order();
+        try {
+            $order->createOrder($orderData);
+            $this->flashSession->success('Заказ успешно создан! <br /><a href="/shop">Перейти на главную</a>');
+        } catch (Exception $e) {
+            $this->flashSession->error('Ошибка создания заказа!');
+        }
     }
 
     public function jsonAction()

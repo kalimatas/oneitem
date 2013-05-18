@@ -10,7 +10,7 @@ class Security extends Phalcon\Mvc\User\Plugin
         $auth = $this->session->get('auth');
         $role = 'guest';
         if ($auth) {
-            /** @var $user \User */
+            /** @var $user \One\User */
             $user = \One\User::findFirst(array(
                                          'id = :id:',
                                          'bind' => array(
@@ -22,12 +22,12 @@ class Security extends Phalcon\Mvc\User\Plugin
                 $di = $this->getDI();
                 $di->set('user', $user);
 
-                if ($user->group == \User::GROUP_CLIENT) {
-                    $role = \User::GROUP_CLIENT;
-                } elseif ($user->group == \User::GROUP_PUBLISHER) {
-                    $role = \User::GROUP_PUBLISHER;
+                if ($user->group == \One\User::GROUP_CLIENT) {
+                    $role = \One\User::GROUP_CLIENT;
+                } elseif ($user->group == \One\User::GROUP_PUBLISHER) {
+                    $role = \One\User::GROUP_PUBLISHER;
                 } else {
-                    $role = \User::GROUP_GUEST;
+                    $role = \One\User::GROUP_GUEST;
                 }
             } else {
                 \Logger::get()->info('not found logged : ' . $user->login);
@@ -62,9 +62,9 @@ class Security extends Phalcon\Mvc\User\Plugin
         $acl = new Phalcon\Acl\Adapter\Memory();
 
         $roles = array(
-            \User::GROUP_CLIENT => new Phalcon\Acl\Role(\User::GROUP_CLIENT),
-            \User::GROUP_PUBLISHER => new Phalcon\Acl\Role(\User::GROUP_PUBLISHER),
-            \User::GROUP_GUEST => new Phalcon\Acl\Role(\User::GROUP_GUEST),
+            \One\User::GROUP_CLIENT => new Phalcon\Acl\Role(\One\User::GROUP_CLIENT),
+            \One\User::GROUP_PUBLISHER => new Phalcon\Acl\Role(\One\User::GROUP_PUBLISHER),
+            \One\User::GROUP_GUEST => new Phalcon\Acl\Role(\One\User::GROUP_GUEST),
         );
         foreach ($roles as $role) {
             $acl->addRole($role);

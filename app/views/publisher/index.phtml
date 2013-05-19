@@ -1,1 +1,32 @@
-publisher index
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Баланс</h1>
+
+        <table>
+            <thead>
+            <tr></tr>
+            <th>ID</th>
+            <th>Продукт</th>
+            <th>Цена</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Дата</th>
+            </thead>
+            <tbody>
+            <?php foreach ($orderList as $order) { ?>
+                <tr>
+                    <td><?php echo $order->id ?></td>
+                    <td><?php echo $order->getProduct()->name ?></td>
+                    <td><?php echo $order->price ?></td>
+                    <td><?php echo $order->name ?></td>
+                    <td><?php echo $order->mobile ?></td>
+                    <td><?php echo $order->address ?></td>
+                    <td><?php echo $order->added ?></td>
+                </tr>
+            <?php
+            } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

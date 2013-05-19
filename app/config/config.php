@@ -27,4 +27,5 @@ return array(
         LOGUS => ROOT_DIR . '/logs/general.log',
         LOGUS_SQL => ROOT_DIR . '/logs/sql.log'
     ),
+    'host' => 'one.dev',
 );

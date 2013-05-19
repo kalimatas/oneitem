@@ -10,7 +10,6 @@
             <th>Телефон</th>
             <th>Адрес</th>
             <th>Дата</th>
-            <th></th>
             </thead>
             <tbody>
             <?php foreach ($orderList as $order) { ?>
@@ -22,9 +21,6 @@
                     <td><?php echo $order->mobile ?></td>
                     <td><?php echo $order->address ?></td>
                     <td><?php echo $order->added ?></td>
-                    <td>
-                        <a href="/shop/newOrder/?product_list[]=<?php echo $product['id'] ?>"
-                           class="button small">Купить</a></td>
                 </tr>
             <?php
             } ?>

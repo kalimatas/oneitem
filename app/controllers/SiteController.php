@@ -16,19 +16,17 @@ class SiteController extends ControllerBase
 
     }
 
-    public function aboutAction()
-    {
-
-    }
-
     /**
      * Получение листинга для сайта по категории
      */
     public function shopAction()
     {
         $categoryId = 1;
+        $api_token = '3a0fbd7580b193300e808aa539f974c0';
 
         $listing = new Listing();
-        $this->view->setVar('listing', $listing->get($categoryId));
+        $data = $listing->get($categoryId);
+        $this->view->setVar('listing', $data);
+        $this->view->setVar('api_token', $api_token);
     }
 }

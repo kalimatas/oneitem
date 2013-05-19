@@ -12,8 +12,6 @@ class User extends \Phalcon\Mvc\Model
     public $email;
     public $password;
     public $group;
-    public $api_token;
-    public $added;
 
     public function initialize()
     {

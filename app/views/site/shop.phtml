@@ -14,8 +14,8 @@
                 <td><?php echo $product['description'] ?></td>
                 <td><?php echo $product['price'] ?> руб</td>
                 <td>
-                    <a href="/shop/newOrder/?product_list[]=<?php echo $product['id'] ?>"
-                       class="button small">Купить</a></td>
+                    <a href="/one/newOrder/?api_token=<?php echo $api_token ?>&product_list[]=<?php echo $product['id'] ?>"
+                       class="button small" target="_blank">Купить</a></td>
             </tr>
         <?php
         }

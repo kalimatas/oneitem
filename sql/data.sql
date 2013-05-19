@@ -1,76 +1,57 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4096
-#
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
-#
-# Host: 127.0.0.1 (MySQL 5.6.10)
-# Database: one
-# Generation Time: 2013-05-18 11:43:34 +0000
-# ************************************************************
+INSERT INTO `one_category` (`id`, `name`)
+VALUES
+	(1,'Детское питание'),
+	(2,'Ноутбуки');
 
+INSERT INTO `one_shop` (`id`, `user_id`, `name`, `url`, `order_mode`, `order_url`, `json_url`)
+  VALUES
+  (1,1,'Турбо Товары','/shop','one','/shop/newOrder','/shop/json');
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+INSERT INTO `one_site` (`id`, `user_id`, `name`, `url`, `api_token`)
+  VALUES
+  (1,2,'Журнал Мама и Малыш','/site','3a0fbd7580b193300e808aa539f974c0');
 
+INSERT INTO `one_product` (`id`, `shop_id`, `shop_product_id`, `status`, `category_id`, `name`, `description`, `price`)
+VALUES
+	(11,1,1,NULL,1,'Хипп - пюре Спокойной Ночи мол. десерт с печеньем, 5 мес., 190/6','Хипп на основе детской БИО-молочной смеси и БИО-печенья.\nОбогащена витаминами и микроэлементами\n',87.00),
+	(12,1,2,NULL,1,'Хипп - пюре Спокойной Ночи мол. манный десерт с шоколадом, 9 мес., 190/6','Хипп - пюре без аллергетиков, не вызывает диатеза. Обогащено важнейшими витаминами, кальцием, железом и йодом',92.00),
+	(13,1,5,NULL,1,'Гербер - пюре банан и лесные ягоды, 6 мес., 130/12','Пюре Гербер рекомендовано с шести месяцев.\nНе содержит искусственных ароматизаторов, красителей и консервантов. ',58.00),
+	(14,1,6,NULL,1,'Гербер - пюре говядина, 6 мес., 80/6','Отличается низким содержанием жира и мягкой консистенцией.\nПридется по вкусу вашему гурману!',68.00),
+	(15,1,3,NULL,2,'Ноутбук Toshiba Satellite C850-D2K (PSKCER-02G00URU)','Ноутбук с широкоформатным 15,6-дюймовым экраном, видеокартой Radeon HD 7610M, двухъядерным процессором Intel Core i3 2328M и 4 гигабайтами оперативной памяти.',15290.00),
+	(16,1,4,NULL,2,'Ноутбук Asus X501U E-450 (90NMOA214W01135813AU) белый','Недорогой ноутбук для работы и развлечений, с 15,6-дюймовым экраном, двухъядерным процессором AMD E-450, 2 гигабайтами оперативной памяти и Windows 8.',12890.00),
+	(17,1,7,NULL,2,'Нетбук Acer Aspire One 725-C7Skk (NU.SGPER.018)','Нетбук 11,6\" с установленной Windows 8, двухъядерным процессором от AMD, двумя гигабайтами оперативной памяти и жестким диском на 500 гигабайт',10090.00),
+	(18,1,8,NULL,2,'Ноутбук HP Pavilion g6-2321er','Производительный и недорогой ноутбук с четырехъядерным процессором, 4 гигабайтами оперативной памяти, видеокартой Radeon HD 7670M и 15.6-дюймовым экраном.\n',17080.00),
+	(19,1,9,NULL,2,'Ноутбук Acer Aspire V5-531G-987B4G50Makk (NX.M4HER.002)','Функциональный ноутбук с 15,6-дюймовым экраном, двухъядерным процессором Core i5, 4 гигабайтами оперативной памяти и видеочипом Radeon HD 7670M.',14890.00),
+	(20,1,10,NULL,2,'Ноутбук Toshiba Satellite L850-D2S (PSKG8R-03S003RU)','Офисный ноутбук с установленной Windows 8, двухъядерным процессором Intel Pentium B987, 4 гигабайтами оперативной памяти и видеокартой GeForce GT 620M.',22590.00);
 
-# Dump of table shop_category
-# ------------------------------------------------------------
-
-LOCK TABLES `shop_category` WRITE;
-/*!40000 ALTER TABLE `shop_category` DISABLE KEYS */;
+INSERT INTO `one_user` (`id`, `email`, `password`, `group`)
+VALUES
+	(1,'client@gmail.com','96e79218965eb72c92a549dd5a330112','client'),
+	(2,'publisher@gmail.com','96e79218965eb72c92a549dd5a330112','publisher');
 
 INSERT INTO `shop_category` (`id`, `name`)
 VALUES
-	(1,'Ноутбуки'),
-	(2,'Вертолеты');
-
-/*!40000 ALTER TABLE `shop_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table shop_order
-# ------------------------------------------------------------
-
-
-
-# Dump of table shop_product
-# ------------------------------------------------------------
-
-LOCK TABLES `shop_product` WRITE;
-/*!40000 ALTER TABLE `shop_product` DISABLE KEYS */;
+	(1,'Детское питание'),
+	(2,'Ноутбуки');
 
 INSERT INTO `shop_product` (`id`, `status`, `category_id`, `name`, `description`, `price`)
 VALUES
-	(1,'active',1,'MacBook Pro 13','Это ноутбук типа, на котором мы все это написали.',42000.00),
-	(2,'active',1,'IBM ThinkPad x200','А на этом мы делали раньше.',25000.00),
-	(3,'active',2,'К-52','Ударный вертолет, который может противостоять целой армии.',88000000.00),
-	(4,'active',2,'Ми-8','Является самым массовым двухдвигательным вертолётом в мире.',12000000.00),
-	(5,'active',1,'Acer Aspire M5','Крутой ноутбук для всего.',30000.00);
+	(1,'active',1,'Хипп - пюре Спокойной Ночи мол. десерт с печеньем, 5 мес., 190/6','Хипп на основе детской БИО-молочной смеси и БИО-печенья.\nОбогащена витаминами и микроэлементами\n',87.00),
+	(2,'active',1,'Хипп - пюре Спокойной Ночи мол. манный десерт с шоколадом, 9 мес., 190/6','Хипп - пюре без аллергетиков, не вызывает диатеза. Обогащено важнейшими витаминами, кальцием, железом и йодом',92.00),
+	(3,'active',2,'Ноутбук Toshiba Satellite C850-D2K (PSKCER-02G00URU)','Ноутбук с широкоформатным 15,6-дюймовым экраном, видеокартой Radeon HD 7610M, двухъядерным процессором Intel Core i3 2328M и 4 гигабайтами оперативной памяти.',15290.00),
+	(4,'active',2,'Ноутбук Asus X501U E-450 (90NMOA214W01135813AU) белый','Недорогой ноутбук для работы и развлечений, с 15,6-дюймовым экраном, двухъядерным процессором AMD E-450, 2 гигабайтами оперативной памяти и Windows 8.',12890.00),
+	(5,'active',1,'Гербер - пюре банан и лесные ягоды, 6 мес., 130/12','Пюре Гербер рекомендовано с шести месяцев.\nНе содержит искусственных ароматизаторов, красителей и консервантов. ',58.00),
+	(6,'active',1,'Гербер - пюре говядина, 6 мес., 80/6','Отличается низким содержанием жира и мягкой консистенцией.\nПридется по вкусу вашему гурману!',68.00),
+	(7,'active',2,'Нетбук Acer Aspire One 725-C7Skk (NU.SGPER.018)','Нетбук 11,6\" с установленной Windows 8, двухъядерным процессором от AMD, двумя гигабайтами оперативной памяти и жестким диском на 500 гигабайт',10090.00),
+	(8,'active',2,'Ноутбук HP Pavilion g6-2321er','Производительный и недорогой ноутбук с четырехъядерным процессором, 4 гигабайтами оперативной памяти, видеокартой Radeon HD 7670M и 15.6-дюймовым экраном.\n',17080.00),
+	(9,'active',2,'Ноутбук Acer Aspire V5-531G-987B4G50Makk (NX.M4HER.002)','Функциональный ноутбук с 15,6-дюймовым экраном, двухъядерным процессором Core i5, 4 гигабайтами оперативной памяти и видеочипом Radeon HD 7670M.',14890.00),
+	(10,'active',2,'Ноутбук Toshiba Satellite L850-D2S (PSKG8R-03S003RU)','Офисный ноутбук с установленной Windows 8, двухъядерным процессором Intel Pentium B987, 4 гигабайтами оперативной памяти и видеокартой GeForce GT 620M.',22590.00);
 
-/*!40000 ALTER TABLE `shop_product` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `one_order` (`id`, `site_id`, `shop_id`, `product_id`, `name`, `mobile`, `address`, `price`, `added`)
+  VALUES
+  (1,1,1,11,'Николай','89169865538','Москва, ул. Светлякова, 2-83',87.00,'2013-05-19 07:10:18');
 
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-truncate table one_user;
-truncate table one_shop;
-truncate table one_user_shop;
-insert into one_user values(1,'client@gmail.com',md5('111111'),'client',now());
-insert into one_user values(2,'publisher@gmail.com',md5('111111'),'publisher',now());
-insert into one_shop values (1,'Турбо Товары','/img/turbo.png','/shop','one','/shop/newOrder','/shop/json');
-insert into one_user_shop values (1,1);
+INSERT INTO `shop_order` (`id`, `product_id`, `price`, `name`, `mobile`, `address`, `added`)
+  VALUES
+  (1,6,68.00,'Роман','89261112233','Моква, ул. Академика Янгеля, д 9, кв 99','2013-05-19 07:09:33'),
+  (2,1,87.00,'Николай','89169865538','Москва, ул. Светлякова, 2-83','2013-05-19 07:10:18');

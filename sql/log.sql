@@ -60,8 +60,8 @@ DROP TABLE IF EXISTS `one`.`one_shop` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`one_shop` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `user_id` BIGINT(20) UNSIGNED NOT NULL ,
   `name` VARCHAR(255) NULL ,
-  `logo` VARCHAR(255) NULL ,
   `url` VARCHAR(255) NULL ,
   `order_mode` VARCHAR(45) NULL ,
   `order_url` VARCHAR(255) NULL ,
@@ -77,42 +77,20 @@ DROP TABLE IF EXISTS `one`.`one_site` ;
 
 CREATE  TABLE IF NOT EXISTS `one`.`one_site` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `user_id` BIGINT(20) UNSIGNED NOT NULL ,
   `name` VARCHAR(255) NULL ,
   `url` VARCHAR(255) NULL ,
+  `api_token` VARCHAR(32) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `one`.`one_user_shop`
+-- Table `one`.`one_order`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_user_shop` ;
+DROP TABLE IF EXISTS `one`.`one_order` ;
 
-CREATE  TABLE IF NOT EXISTS `one`.`one_user_shop` (
-  `user_id` BIGINT(20) UNSIGNED NOT NULL ,
-  `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
-  PRIMARY KEY (`user_id`, `shop_id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `one`.`one_user_site`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_user_site` ;
-
-CREATE  TABLE IF NOT EXISTS `one`.`one_user_site` (
-  `user_id` BIGINT(20) UNSIGNED NOT NULL ,
-  `site_id` BIGINT(20) UNSIGNED NOT NULL ,
-  PRIMARY KEY (`user_id`, `site_id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `one`.`one_cpo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_cpo` ;
-
-CREATE  TABLE IF NOT EXISTS `one`.`one_cpo` (
+CREATE  TABLE IF NOT EXISTS `one`.`one_order` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `site_id` BIGINT(20) UNSIGNED NOT NULL ,
   `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
@@ -120,8 +98,8 @@ CREATE  TABLE IF NOT EXISTS `one`.`one_cpo` (
   `name` VARCHAR(255) NULL ,
   `mobile` VARCHAR(255) NULL ,
   `address` VARCHAR(255) NULL ,
-  `added` TIMESTAMP NULL ,
   `price` DECIMAL(10,2) NULL ,
+  `added` TIMESTAMP NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -139,11 +117,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `one`.`one_shop_product`
+-- Table `one`.`one_product`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_shop_product` ;
+DROP TABLE IF EXISTS `one`.`one_product` ;
 
-CREATE  TABLE IF NOT EXISTS `one`.`one_shop_product` (
+CREATE  TABLE IF NOT EXISTS `one`.`one_product` (
   `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT ,
   `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
   `shop_product_id` BIGINT(20) UNSIGNED NOT NULL ,
@@ -158,18 +136,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `one`.`one_cpc`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `one`.`one_cpc` ;
-
-CREATE  TABLE IF NOT EXISTS `one`.`one_cpc` (
-  `site_id` BIGINT(20) UNSIGNED NOT NULL ,
-  `shop_id` BIGINT(20) UNSIGNED NOT NULL ,
-  PRIMARY KEY (`site_id`, `shop_id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `one`.`one_user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `one`.`one_user` ;
@@ -179,7 +145,6 @@ CREATE  TABLE IF NOT EXISTS `one`.`one_user` (
   `email` VARCHAR(255) NULL ,
   `password` VARCHAR(32) NULL ,
   `group` VARCHAR(255) NULL ,
-  `api_token` VARCHAR(32) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 

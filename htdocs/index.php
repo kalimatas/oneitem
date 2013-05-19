@@ -3,6 +3,8 @@
 define('ROOT_DIR', realpath(__DIR__ . '/..'));
 define('HTDOCS_DIR', __DIR__);
 
+header('Content-type: text/html; charset=utf-8');
+
 try {
     require_once ROOT_DIR . '/app/config/bootstrap.php';
 

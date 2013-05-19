@@ -41,7 +41,6 @@ class ShopController extends ControllerBase
 
         $productModel = new \Shop\Product();
         $product = $productModel->findFirst('id = ' . (int)$productList[0]);
-        //var_dump($product);die();
 
         if ($product == false) {
             $this->response->redirect('/shop', true);
@@ -90,7 +89,7 @@ class ShopController extends ControllerBase
     {
         $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
         $this->response->resetHeaders();
-        $this->response->setHeader('Content-type', 'application/json');
+        $this->response->setHeader('Content-type', 'application/json; charset=utf-8');
 
         $listing = new Listing();
         echo json_encode($listing->getJson(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

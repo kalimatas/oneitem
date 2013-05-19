@@ -35,13 +35,47 @@
     <section class="top-bar-section">
         <ul class="left">
             <li class="divider"></li>
-            <li><a href="/one/about">О нас</a></li>
-            <li><a href="/one/about">Контакты</a></li>
+            <li><a href="/one/about">Идея</a></li>
         </ul>
 
         <?php echo $this->elements->getLogin() ?>
     </section>
 </nav>
+
+<?php
+$flashMessages = $this->flashSession->getMessages();
+//var_dump($flashMessages);die();
+foreach ($flashMessages as $key => $messages) {
+    switch ($key) {
+        case 'error':
+            $class = 'alert';
+            break;
+        case 'success':
+            $class = 'success';
+            break;
+        case 'notice':
+            $class = 'secondary';
+            break;
+        case 'warning':
+            $class = 'alert';
+            break;
+        default:
+            $class = '';
+    }
+    foreach ($messages as $message) {
+        ?>
+        <div class="row">
+            <div class="large-12 columns">
+                <div data-alert class="alert-box <?php echo $class ?>">
+                    <?php echo $message ?>
+                    <a href="#" class="close">&times;</a>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+}
+?>
 
 <?php echo $this->getContent(); ?>
 
@@ -120,7 +154,7 @@
         $("#loginBtn").click(function (event) {
             $.post("/one/auth", $("#loginFrm").serialize(), function (data) {
                 if (data.status == 'success') {
-                    $(location).attr('href',data.redirect);
+                    $(location).attr('href', data.redirect);
                 } else {
                     $(".block-login-fail").show();
                 }

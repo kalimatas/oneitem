@@ -1,1 +1,47 @@
-one newOrder
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Оформление заказа</h1>
+
+        <table>
+            <tr>
+                <td><strong>Этот товар вы приобретаете в магазине: <a href="<?php echo $product->getShop()->url ?>"
+                                                                      target="_blank"><?php echo $product->getShop()->name ?></a></strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table>
+            <tr>
+                <td><strong><?php echo $product->name ?></strong></td>
+                <td><?php echo $product->description ?></td>
+                <td><?php echo $product->price ?> руб</td>
+            </tr>
+        </table>
+
+        <p>Что бы оформить заказ, заполните форму для доставки</p>
+    </div>
+</div>
+
+<form method="post" id="order">
+    <div class="row">
+        <div class="large-12 columns">
+            <input name="name" type="text" placeholder="Имя" value="<?php echo $name ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <input name="mobile" type="text" placeholder="Мобильный телефон" value="<?php echo $mobile ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <input name="address" type="text" placeholder="Адрес доставки" value="<?php echo $address ?>">
+        </div>
+
+        <div class="large-12 columns">
+            <a href="javascript:$('#order').submit()" class="button">Отправить</a>
+        </div>
+    </div>
+</form>

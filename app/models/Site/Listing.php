@@ -4,7 +4,13 @@ namespace Site;
 
 class Listing
 {
-    protected $url = 'http://one.dev/publisher/listing/';
+    protected $url;
+
+    function __construct()
+    {
+        $di = new \One\Site;
+        $this->url = 'http://' . $di->getDI()->get('config')->host . '/publisher/listing/';
+    }
 
     /**
      * @param int $categoryId

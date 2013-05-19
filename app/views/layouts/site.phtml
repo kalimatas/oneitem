@@ -56,9 +56,16 @@
 
 <nav class="top-bar">
     <ul class="title-area">
-        <li class="name"><h1><a href="/shop"><?php echo Phalcon\Tag::getTitle(false) ?></a></h1></li>
+        <li class="name"><h1><a href="/site"><?php echo Phalcon\Tag::getTitle(false) ?></a></h1></li>
         <li class="toggle-topbar menu-icon"><a href="#"><span>Меню</span></a></li>
     </ul>
+
+    <section class="top-bar-section">
+        <ul class="left">
+            <li class="divider"></li>
+            <li><a href="/site/shop">Магазин</a></li>
+        </ul>
+    </section>
 </nav>
 
 <div class="row">
@@ -101,13 +108,6 @@
         <?php echo $this->getContent(); ?>
     </div>
 </div>
-
-<footer>
-    <div class="row">
-        <div class="large-12">Магазин</div>
-    </div>
-</footer>
-
 
 <script>
     document.write('<script src=' +

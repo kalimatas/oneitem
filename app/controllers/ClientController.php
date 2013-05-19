@@ -14,6 +14,19 @@ class ClientController extends ControllerBase
      */
     public function indexAction()
     {
+        $orderModel = new \One\Order();
+        $orderList = $orderModel->find();
 
+        $sum = 0;
+        foreach ($orderList as $order) {
+            $sum += $order->price;
+        }
+        $balance = 0;
+        if ($sum) {
+            $balance = $sum / 100 * 15;
+        }
+
+        $this->view->setVar('orderList', $orderList);
+        $this->view->setVar('balance', $balance);
     }
 }

@@ -15,7 +15,7 @@ class ClientController extends ControllerBase
     public function indexAction()
     {
         $orderModel = new \One\Order();
-        $orderList = $orderModel->find();
+        $orderList = $orderModel->find(array('order' => 'added desc'));
 
         $sum = 0;
         foreach ($orderList as $order) {

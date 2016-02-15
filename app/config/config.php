@@ -6,6 +6,8 @@ date_default_timezone_set('Europe/Moscow');
 define('LOGUS', 'general');
 define('LOGUS_SQL', 'sql');
 
+// Added some comment here
+
 return array(
     'database' => array(
         'adapter' => 'mysql',
